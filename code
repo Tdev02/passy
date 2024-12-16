@@ -2,7 +2,7 @@ import json
 import os
 from cryptography.fernet import Fernet
 
-# Generate or load the encryption key
+
 def load_key():
     """Load the key from a file or generate a new one."""
     if not os.path.exists("key.key"):
@@ -14,14 +14,14 @@ def load_key():
             key = key_file.read()
     return key
 
-# Initialize the Fernet object
+
 key = load_key()
 fernet = Fernet(key)
 
-# Password file
+
 PASSWORD_FILE = "passwords.json"
 
-# Ensure password file exists
+
 def initialize_password_file():
     if not os.path.exists(PASSWORD_FILE):
         with open(PASSWORD_FILE, "w") as file:
@@ -29,7 +29,7 @@ def initialize_password_file():
 
 initialize_password_file()
 
-# Save a password
+
 def save_password(service, username, password):
     """Encrypt and save the password for a service."""
     with open(PASSWORD_FILE, "r") as file:
@@ -43,7 +43,7 @@ def save_password(service, username, password):
 
     print(f"Password for {service} saved successfully!")
 
-# Retrieve a password
+
 def retrieve_password(service):
     """Retrieve and decrypt the password for a service."""
     with open(PASSWORD_FILE, "r") as file:
@@ -57,7 +57,7 @@ def retrieve_password(service):
     else:
         print(f"No password found for {service}.")
 
-# Delete a password
+
 def delete_password(service):
     """Delete a password for a service."""
     with open(PASSWORD_FILE, "r") as file:
@@ -71,7 +71,7 @@ def delete_password(service):
     else:
         print(f"No password found for {service}.")
 
-# Main menu
+
 def main():
     """Main menu for the password manager."""
     while True:
